@@ -2,134 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Filtro de Separadores Ciclónicos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .filters {
-            margin-bottom: 20px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        select {
-            padding: 5px;
-            margin: 5px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtros de Separadores</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="filters">
-        <select id="tipoFilter">
-            <option value="">Seleccionar TIPO</option>
-        </select>
-        <select id="dnFilter">
-            <option value="">Seleccionar DN</option>
-        </select>
-        <select id="subfamiliaFilter">
-            <option value="">Seleccionar SUBFAMILIA</option>
-        </select>
+    <div class="container">
+        <header>
+            <h1>Separadores Ciclónicos</h1>
+        </header>
+        
+        <div class="image-container">
+            <div class="image-box">
+                <img src="img/imagen1.jpg" alt="Separador Tipo 1" class="main-image">
+                <a href="pagina1.html" class="image-link">Ver Separadores Soldados</a>
+            </div>
+            
+            <div class="image-box">
+                <img src="img/imagen2.jpg" alt="Separador Tipo 2" class="main-image">
+                <a href="pagina2.html" class="image-link">Ver Separadores Embridados</a>
+            </div>
+        </div>
     </div>
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <th>TIPO</th>
-                <th>DN</th>
-                <th>SUBFAMILIA</th>
-                <th>CAUDAL NOMINAL</th>
-                <th>PRECIO</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>
-    </table>
-
-    <script>
-        const data = [
-            // Aquí irían tus datos en formato JSON
-            {
-                tipo: "CYCLONE MAX ZCX 80",
-                dn: "DN80",
-                subfamilia: "SOLDADO",
-                caudalNominal: "18,0",
-                precio: "1897.00"
-            },
-            // ... más datos ...
-        ];
-
-        function populateFilters() {
-            const tipos = [...new Set(data.map(item => item.tipo))];
-            const dns = [...new Set(data.map(item => item.dn))];
-            const subfamilias = [...new Set(data.map(item => item.subfamilia))];
-
-            const tipoFilter = document.getElementById('tipoFilter');
-            const dnFilter = document.getElementById('dnFilter');
-            const subfamiliaFilter = document.getElementById('subfamiliaFilter');
-
-            tipos.forEach(tipo => {
-                const option = document.createElement('option');
-                option.value = tipo;
-                option.textContent = tipo;
-                tipoFilter.appendChild(option);
-            });
-
-            // Similar para DN y subfamilia...
-        }
-
-        function filterData() {
-            const tipo = document.getElementById('tipoFilter').value;
-            const dn = document.getElementById('dnFilter').value;
-            const subfamilia = document.getElementById('subfamiliaFilter').value;
-
-            const filteredData = data.filter(item => 
-                (!tipo || item.tipo === tipo) &&
-                (!dn || item.dn === dn) &&
-                (!subfamilia || item.subfamilia === subfamilia)
-            );
-
-            displayData(filteredData);
-        }
-
-        function displayData(filteredData) {
-            const tableBody = document.getElementById('tableBody');
-            tableBody.innerHTML = '';
-
-            filteredData.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.tipo}</td>
-                    <td>${item.dn}</td>
-                    <td>${item.subfamilia}</td>
-                    <td>${item.caudalNominal}</td>
-                    <td>${item.precio}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Event listeners
-        document.getElementById('tipoFilter').addEventListener('change', filterData);
-        document.getElementById('dnFilter').addEventListener('change', filterData);
-        document.getElementById('subfamiliaFilter').addEventListener('change', filterData);
-
-        // Inicializar
-        populateFilters();
-        displayData(data);
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
